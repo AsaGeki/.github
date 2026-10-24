@@ -1,0 +1,23 @@
+name: Bug
+description: Algo não funciona como deveria
+title: 'fix: '
+body:
+  - type: textarea
+    id: o-que-acontece
+    attributes:
+      label: O que acontece
+      description: O que você viu e o que esperava ver.
+    validations:
+      required: true
+  - type: textarea
+    id: como-reproduzir
+    attributes:
+      label: Como reproduzir
+      description: Os passos, na ordem, até o problema aparecer.
+    validations:
+      required: true
+  - type: textarea
+    id: ambiente
+    attributes:
+      label: Ambiente
+      description: Sistema, versão do projeto e qualquer detalhe que ajude.

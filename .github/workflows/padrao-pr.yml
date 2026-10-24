@@ -1,0 +1,33 @@
+name: Padrão do PR
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  conferir:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Título em Conventional Commits
+        env:
+          TITULO: ${{ github.event.pull_request.title }}
+        run: |
+          padrao='^(feat|fix|refactor|docs|chore|perf)(\([a-z0-9-]+\))?!?: .+'
+          if ! [[ "$TITULO" =~ $padrao ]]; then
+            echo "::error::Título fora do padrão: $TITULO"
+            echo "Use 'tipo: descrição' com tipo feat, fix, refactor, docs, chore ou perf."
+            exit 1
+          fi
+
+      - name: Nome da branch
+        env:
+          BRANCH: ${{ github.head_ref }}
+        run: |
+          padrao='^((feat|fix|refactor|docs|chore|perf)/[a-z0-9]+(-[a-z0-9]+)*|claude/.+|dependabot/.+)$'
+          if ! [[ "$BRANCH" =~ $padrao ]]; then
+            echo "::error::Branch fora do padrão: $BRANCH"
+            echo "Use '<tipo>/<assunto-curto>' em minúsculas e com hífens (ex.: feat/servidor-da-arte)."
+            exit 1
+          fi
