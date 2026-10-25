@@ -7,7 +7,7 @@ on:
         type: string
         default: '24'
       prepare-command:
-        description: Comando rodado depois do install e antes do typecheck (ex.: pnpm db:generate).
+        description: 'Comando rodado depois do install e antes do typecheck (ex.: pnpm db:generate).'
         type: string
         default: ''
       run-tests:
